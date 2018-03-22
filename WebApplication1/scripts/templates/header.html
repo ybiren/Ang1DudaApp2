@@ -1,0 +1,38 @@
+﻿
+<div class="row" ng-class="{'rowheaderRed' : isAfterClick == true }" >
+	<form class="form-inline-static">
+
+		<div  class="col-sm-offset-0 col-sm-2">
+			<select  class="form-control" ng-model="profileSel" ng-change="OnProfileSel()">
+				<option value="">Profiles</option>
+				<option value="{{option.id}}" ng-repeat="option in linkDat">{{option.full}}</option>
+			</select>
+		</div>
+
+			<div class="form-group">
+				<label class="control-label col-sm-1">name:</label>
+				<div class="col-sm-2">
+				<input placeholder="name:" class="form-control" type="text" ng-model="currProf.full">
+				</div>
+				<label class="control-label col-sm-1">bio:</label>
+				<div class="col-sm-2">
+					<input type="text" placeholder="bio:" class="form-control" ng-model="currProf.bio">
+				</div>
+				<div class="col-sm-1">
+					<button class="btn  form-control" ng-click="CreateProfile()">CREATE</button>
+				</div>
+				<div class="col-sm-2 check">
+					<label><input ng-model="isShowPrivate"  type="checkbox">show private {{tryText}}</label>
+					</div>
+					
+				</div>
+  </form>
+</div>
+
+<div class="row">
+	<div id="contentSec" class="profContent col-sm-12">
+		{{isMouse}}
+	</div>
+</div>
+
+​

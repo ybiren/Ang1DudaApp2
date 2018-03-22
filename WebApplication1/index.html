@@ -1,0 +1,61 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<style>
+	input[type="checkbox"]{
+	margin-top: 0;
+	line-height: normal;
+	}
+	.rowheader {
+		padding-bottom: 20px;
+	}
+	
+	.rowheaderRed {
+		background-color: red;
+	}
+	
+	.profContent {
+		background-color:lightgray;
+		display: block;
+		height: 100vh;
+	}
+	.profile {
+		margin-top: 20px;
+		background-color: white;
+	  border-radius: 25px;
+    border: 2px solid lightgray;
+	}
+	.control-label {
+		padding-top: 5px;
+		margin: 0;
+		}
+	  .form-control {
+		 padding: 0;
+		 margin: 0;
+		 }
+	.check {
+		padding-top: 5px;
+	}
+	</style>
+	<script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+	<script src="//ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular-route.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-bootstrap/0.12.0/ui-bootstrap-tpls.js"></script>
+
+	<link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	
+	<script src="scripts/app.js"></script>
+	<script src="scripts/directives/profileDir.js"></script>
+	<script src="scripts/directives/headerDir.js"></script>
+	<script src="scripts/controllers/headerCtrl.js"></script>
+	<script src="scripts/services/httpSvc.js"></script>
+	<script src="scripts/services/realSvc.js"></script>
+
+</head>
+<body ng-app="dudaApp" class="content">
+	<header-dir/>
+</body>
+</html>
