@@ -1,9 +1,8 @@
-﻿dudaApp.controller("headerCtrl", ['$scope', '$http', 'httpSvc', '$compile', 'realSvc', function ($scope, $http, httpSvc, $compile, realSvc) {
+﻿dudaApp.controller("headerCtrl", ['$scope', '$http', 'httpSvc', '$compile', 'realSvc', '$localStorage', '$window', function ($scope, $http, httpSvc, $compile, realSvc, $localStorage, $window) {
 
-	  this.call = function() {
-	  	alert(httpSvc.getVal());
-	  }
-	
+	 let profileArr = [];
+	 
+
 	  $scope.IsProfilePrivate = function (profId) {
 	  	return ($scope.isShowPrivate === true) && (profId === $scope.currProf.id);
 	  }
@@ -26,40 +25,48 @@
 		  	$scope.currProf = profDat.data;
 		  });
 	  }
+	
+	  $scope.CreateProfile = function (currProf,notAddTols) {
 
-	  $scope.funcTry = function() {
-		  alert("hello from func try");
-	  }
-
-
-	  $scope.CreateProfile = function () {
-		  var profileEl = angular.element(`<profile-dir>`);
-		  profileEl.attr('bio',  $scope.currProf.bio );
-		  profileEl.attr('full', $scope.currProf.full);
-		  profileEl.attr('funcTry', "funcTry()");
-
-
-		  $('#contentSec').append(profileEl);
+	  	var profileEl = angular.element(`<profile-dir>`);
+		  profileEl.attr('bio',  currProf.bio );
+		  profileEl.attr('full', currProf.full);
+	    $('#contentSec').append(profileEl);
 		  $compile(profileEl)($scope);
-		  
 
-		  httpSvc.get("http://graph.facebook.com/" + $scope.currProf.fbprof + "/pictures").then(function (profPic) {
+		  if (notAddTols === undefined) {
+			  alert(notAddTols);
+		  	let profArr = [];
+			  if ($localStorage.profArr !== undefined) {
+				  profArr = JSON.parse($localStorage.profArr);
+			  }
+			  profArr.push(currProf);
+			  $localStorage.profArr = JSON.stringify(profArr);
+		  }
+
+		  httpSvc.get("http://graph.facebook.com/" + currProf.fbprof + "/pictures").then(function (profPic) {
 	  		$scope.profPic = profPic.data;
 	  		alert(angular.toJson(profPic.data));
 	  	});
-	  }
-    
-	  httpSvc.setVal("44");
-	  realSvc.func();
 
-	  $scope.call=function()
-	  {
-		  alert("called")
+
+
 	  }
 
+	  if ($localStorage.profArr !== undefined) {
+	  	let profArr = JSON.parse($localStorage.profArr);
+		  profArr.forEach(function(prof) {
+			  $scope.CreateProfile(prof,true);
+		  });
+	  }
 
-	  //start from here
-	  httpSvc.get("http://duda-api-test.herokuapp.com/profiles").then(function (linkDat) {
-	  	$scope.linkDat = linkDat.data;
-	  });
+	//start from here
+	 httpSvc.get("http://duda-api-test.herokuapp.com/profiles")
+		  .then(function(linkDat) {
+			  $scope.linkDat = linkDat.data;
+	 });
+	
+
+
+
 }]);
