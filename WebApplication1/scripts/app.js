@@ -1,1 +1,1 @@
-﻿dudaApp = angular.module("dudaApp", []);
+﻿dudaApp = angular.module("dudaApp", ['ngStorage']);
